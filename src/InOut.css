@@ -1,0 +1,27 @@
+.wholeinput {
+
+}
+
+.element_periodo {
+    display: flex;
+    justify-content: center;
+    flex-basis: 5%;
+}
+
+#n_periodos{
+    width: 18%;
+    text-align: center;
+    margin-left: 5%;
+}
+
+.matrix{
+    margin-top: 10vh;
+    width: 80%;
+    display: grid;
+    grid-template-columns: .5fr 1fr 1fr;
+    gap: 2px;
+}
+
+.matrix div{
+    outline: 2px solid #555555;
+}
