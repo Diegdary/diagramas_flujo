@@ -15,7 +15,7 @@
 }
 
 .matrix{
-    margin-top: 10vh;
+    margin: 10vh 0 5vh 0;
     width: 80%;
     display: grid;
     grid-template-columns: .5fr 1fr 1fr;
@@ -24,4 +24,27 @@
 
 .matrix div{
     outline: 2px solid #555555;
+}
+
+.addcontainer{
+    text-align: start;
+}
+
+.inputcontainer{
+    display: flex;
+}
+
+.valores{
+    height: 100%;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    top: 10px;
+    font-size: 1em;
+}
+
+.valores:focus{
+    outline: none;
 }
