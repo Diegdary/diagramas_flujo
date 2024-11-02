@@ -7,6 +7,7 @@ import './InOut.css'
 function App() {
 
   const [elementos, setelementos] = useState(["","",""]);
+  const periodos = useRef<HTMLInputElement>(null);
   
   const addsingle = (n: number)=>{
     setelementos(last=>{
@@ -14,6 +15,7 @@ function App() {
       for (let i = 0; i < n; i++) {
         newer.splice(newer.length,0,"","","");
       }
+      periodos.current!.value= (newer.length/3).toString();
       return newer;
     });
   };
@@ -27,6 +29,7 @@ function App() {
           newer.splice(newer.length-3,3);
         }
       }
+      periodos.current!.value= (newer.length/3).toString();
       return newer;
     });
   };
@@ -58,7 +61,7 @@ function App() {
       <form action="" className='wholeinput'>
         <div className='element_periodo'>
           <label htmlFor="n_periodos">Periodos:</label>
-          <input type="number" name="periodos" id="n_periodos" min={1} defaultValue={1} onChange={instantinput}/>
+          <input ref={periodos} type="number" name="periodos" id="n_periodos" min={1} defaultValue={1} onChange={instantinput}/>
           <p id='validation'></p>
         </div>
         <div className='matrix' id='matrix'>
