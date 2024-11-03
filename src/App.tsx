@@ -1,4 +1,4 @@
-import { useState, useRef, ChangeEvent } from 'react'
+import { useState, useRef, ChangeEvent} from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -6,7 +6,7 @@ import './InOut.css'
 
 function App() {
 
-  const [elementos, setelementos] = useState(["","",""]);
+  const [elementos, setelementos] = useState(["","","","","",""]);
   const periodos = useRef<HTMLInputElement>(null);
   
   const addsingle = (n: number)=>{
@@ -24,7 +24,7 @@ function App() {
 
     setelementos(last=>{
       let newer = [...last];
-      if(newer.length!=3){
+      if(newer.length!=6){
         for (let i = 0; i < n; i++) {
           newer.splice(newer.length-3,3);
         }
@@ -37,23 +37,30 @@ function App() {
 
   const instantinput = (event: ChangeEvent<HTMLInputElement>)=>{
     let inp :string  = event.target.value;
-    let numb = inp == ""? 1 : parseInt(inp);
-    if (numb >0) {
-      document.getElementById("validation")!.innerHTML="";
+    let numb = inp == ""? 0 : parseInt(inp);
+    if (numb >1) {
+      document.getElementById("validation")!.classList.remove("validation");
       let lastsize:number =elementos.length/3;
       if (numb>lastsize) {
-        console.log(lastsize + "<" + numb);
         addsingle(numb-lastsize);
       }
       else{
-        console.log(lastsize + ">" + numb);
         removesingle(lastsize-numb);
       }
     }
     else{
-      document.getElementById("validation")!.innerHTML="No válido";
+      document.getElementById("validation")!.classList.add("validation");
     }
   };
+
+  const draw = (e:ChangeEvent<HTMLInputElement>,index: number)=>{
+    setelementos(last => {
+      let newer = [...last];
+      newer[index]=e.target.value;
+      console.log(elementos)
+      return newer;
+    });
+  }
 
   return (
     <>
@@ -61,7 +68,7 @@ function App() {
       <form action="" className='wholeinput'>
         <div className='element_periodo'>
           <label htmlFor="n_periodos">Periodos:</label>
-          <input ref={periodos} type="number" name="periodos" id="n_periodos" min={1} defaultValue={1} onChange={instantinput}/>
+          <input ref={periodos} type="number" name="periodos" id="n_periodos" min={1} defaultValue={2} onChange={instantinput}/>
           <p id='validation'></p>
         </div>
         <div className='matrix' id='matrix'>
@@ -69,7 +76,7 @@ function App() {
           <div className='valores layers'> Ingreso </div>
           <div className='valores layers'> Egreso </div>
           {elementos.map((item,index)=>
-            <div key={index}><input type="text" className='valores' defaultValue={item} /></div>
+            <div key={`div${index}`}><input type="text" className='valores' key={index} value={item} onChange={(e)=>{draw(e,index)}}/></div>
           )}
         </div>
         <div className='addcontainer'>
@@ -78,6 +85,9 @@ function App() {
         </div>
         
       </form>
+      <div >
+
+      </div>
     </>
   )
 }

@@ -1,12 +1,16 @@
 .wholeinput {
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .element_periodo {
     display: flex;
+    position: relative;
     height: 32px;
     justify-content: center;
     flex-basis: 5%;
+    transition: all 2s;
 }
 
 label{
@@ -25,11 +29,18 @@ label{
     color: #FFFFFF;
 }
 
-#validation{
+.validation::after{
+    position: absolute;
+    width: 100%;
+    content: "No válido, su número es menor que 2";
+    text-align: start;
     color: #FF0000;
     font-size: 1em;
-    margin: 0;
+    margin: 0 6px;
+    top: 0;
 }
+
+
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -41,7 +52,7 @@ input::-webkit-inner-spin-button {
     width: 80%;
     display: grid;
     grid-template-columns: .5fr 1fr 1fr;
-    gap: 2px;
+    gap:2px;
 }
 
 .matrix div{
@@ -50,11 +61,13 @@ input::-webkit-inner-spin-button {
 
 .addcontainer{
     display: flex;
-    justify-content: space-between;
+    width: 80%;
+    justify-content: flex-start;
 }
 
 #deltbutton{
     background: #9f1212;
+    margin-left: 3%;
 }
 
 #deltbutton:hover{
@@ -71,7 +84,7 @@ input::-webkit-inner-spin-button {
     height: 100%;
     background-color: transparent;
     border: none;
-    padding: 0;
+    padding: 0px;
     margin: 0;
     text-align: center;
     top: 10px;
