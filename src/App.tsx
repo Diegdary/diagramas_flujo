@@ -57,9 +57,18 @@ function App() {
     setelementos(last => {
       let newer = [...last];
       newer[index]=e.target.value;
-      console.log(elementos)
       return newer;
     });
+  }
+
+  const convertelem = ()=>{
+    let newer: any[] = [];
+    console.log(newer);
+    for (let i = 2; i < elementos.length; i=i+3) {
+        newer.push(elementos[i]);
+    }
+    console.log(newer);
+    return newer;
   }
 
   return (
@@ -85,8 +94,12 @@ function App() {
         </div>
         
       </form>
-      <div >
-
+      <div id='grafica1'>
+          {convertelem().map((item,index)=>
+            <div key={index}>{item}</div>
+            
+          )}
+          
       </div>
     </>
   )
