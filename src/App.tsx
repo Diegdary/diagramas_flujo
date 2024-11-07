@@ -1,4 +1,4 @@
-import { useState, useRef, ChangeEvent} from 'react'
+import { useState, useRef, ChangeEvent, createElement} from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -63,12 +63,26 @@ function App() {
 
   const convertelem = ()=>{
     let newer: any[] = [];
-    console.log(newer);
     for (let i = 2; i < elementos.length; i=i+3) {
         newer.push(elementos[i]);
     }
-    console.log(newer);
     return newer;
+  }
+
+  const doublex = ()=>{
+    let li:any[] = [];
+    const longitud_recta = (elementos.length/3-1)*2;
+    for (let i = 0; i < longitud_recta; i++) {
+      li.push({});
+      if (i >= longitud_recta/2) {
+        
+      }
+      if (true) {
+        
+      }
+    }
+    console.log(li);
+    return li;
   }
 
   return (
@@ -94,12 +108,37 @@ function App() {
         </div>
         
       </form>
-      <div id='grafica1'>
+      <div className='grafica1'>
           {convertelem().map((item,index)=>
-            <div key={index}>{item}</div>
+            <div key={index}><input type="text" value={item} readOnly/></div>
             
           )}
           
+      </div>
+      <div className='grafica1 flechav'>
+      
+        {convertelem().map((item,index)=>
+            <div key={index}>
+              {item !=""?createElement('i',{className: "fa-solid fa-arrow-up"}):""}
+              <div>
+
+              </div>
+            </div>
+            
+          )}
+      </div>
+      <div className='recta-container'>
+          <div className='recta'>
+            {doublex().map((item, index)=>
+              <div className='recta-item' key={index}></div>
+            )}
+          </div>
+      </div>
+      <div>
+
+      </div>
+      <div>
+
       </div>
     </>
   )
