@@ -118,6 +118,8 @@ input::-webkit-inner-spin-button {
     height: 38%;
     background-color: #FFFFFF;
     margin-bottom: 400px;
+    border: 2px solid #000000;
+    border-radius: 18px;
 }
 
 .grafica1{
