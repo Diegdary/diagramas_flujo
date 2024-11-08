@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 0 0 5vh 0;
 }
 
 .element_periodo {
@@ -75,6 +76,13 @@ input::-webkit-inner-spin-button {
     border-width: 3px;
 }
 
+.plus-icon{
+    display: grid;
+    place-items: center;
+    margin-left: 3%;
+    font-size: 1.9em
+}
+
 .inputcontainer{
     display: flex;
 }
@@ -102,10 +110,19 @@ input::-webkit-inner-spin-button {
     outline: none;
 }
 
-.grafica1{
-    margin: 5vh 0 0 0;
+.result{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     width: 100%;
-    height: 5%;
+    height: 38%;
+    background-color: #FFFFFF;
+    margin-bottom: 400px;
+}
+
+.grafica1{
+    width: 100%;
+    height: 10%;
     display: grid;
     background-color: #FFFFFF;
     grid-template-rows: 1fr;
@@ -116,10 +133,9 @@ input::-webkit-inner-spin-button {
 
 .grafica1 div{
     display: flex;
-    border: 2px solid #000000;
+
     color: #000000;
     font-size: 1em;
-
     font-weight: bold;
     
 }
@@ -131,7 +147,7 @@ input::-webkit-inner-spin-button {
     background-color: transparent;
     color: #000000;
     border: none;
-    font-size: 1em;
+    font-size: 1.2em;
     font-weight: bold;
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
@@ -142,7 +158,7 @@ input::-webkit-inner-spin-button {
 
 .flechav{
     margin: 0;
-    height: 10%;
+    height: 20%;
     font-weight: 100;
 }
 
@@ -154,35 +170,67 @@ input::-webkit-inner-spin-button {
     align-items: center;
 }
 .flechav div i{
+    font-size: 1.6em;
     height: fit-content;
-    transform: scale(1,2);
+    transform: scale(1,2.3);
     margin: 0;
+    z-index: 10;
+    width: 100%;
+}
+
+
+.arrow-tail-up{
+    position: relative;
+    z-index: 0;
+    
+    width: 3.26px;
+    height: 50%;
+    background-color: #6e079e;
+    border-radius: 30px;
+}
+
+.red-arrow{
+    color: #FF0000;
 }
 
 .recta-container{
-    margin-top: 5px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     background: transparent;
-    height: 5%;
+    height: 13%;
     width: 100%;
 }
 
 .recta{
-    width: 80%;
+    height: 50%;
     background: #FFFFFF;
     display: grid;
     grid-auto-flow: column;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr;
     grid-auto-columns: 1fr;
 }
 
+.upper{
+    height: calc(50% + 4px);
+}
+
 .recta-item{
-    border: 3px solid #FF00FF;
+    border: 4px solid #000000;
     border-top: 0;
     border-left: 0;
 }
 
-.ridofborders{
-    border-left:3;
+.recta div:nth-child(1){
+    border-left: 4px solid #000000;
 }
+
+.down{
+    border-bottom: 0;
+}
+
+.midvalues{
+    height: 10%;
+    font-size: 1em;
+}
+

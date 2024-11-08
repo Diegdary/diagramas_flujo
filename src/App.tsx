@@ -61,7 +61,7 @@ function App() {
     });
   }
 
-  const convertelem = ()=>{
+  const convertup = ()=>{
     let newer: any[] = [];
     for (let i = 2; i < elementos.length; i=i+3) {
         newer.push(elementos[i]);
@@ -69,19 +69,29 @@ function App() {
     return newer;
   }
 
+  const convertmid = ()=>{
+    let newer: any[] = [];
+    for (let i = 0; i < elementos.length; i=i+3) {
+        newer.push(elementos[i]);
+    }
+    return newer;
+  }
+
+  const convertdown = ()=>{
+    let newer: any[] = [];
+    for (let i = 1; i < elementos.length; i=i+3) {
+        newer.push(elementos[i]);
+    }
+    return newer;
+  }
+
   const doublex = ()=>{
     let li:any[] = [];
-    const longitud_recta = (elementos.length/3-1)*2;
+    const longitud_recta = (elementos.length/3-1);
     for (let i = 0; i < longitud_recta; i++) {
-      li.push({});
-      if (i >= longitud_recta/2) {
-        
-      }
-      if (true) {
-        
-      }
+      li.push("");
     }
-    console.log(li);
+
     return li;
   }
 
@@ -91,7 +101,7 @@ function App() {
       <form action="" className='wholeinput'>
         <div className='element_periodo'>
           <label htmlFor="n_periodos">Periodos:</label>
-          <input ref={periodos} type="number" name="periodos" id="n_periodos" min={1} defaultValue={2} onChange={instantinput}/>
+          <input ref={periodos} type="number" name="periodos" id="n_periodos" max={20} min={1} defaultValue={2} onChange={instantinput}/>
           <p id='validation'></p>
         </div>
         <div className='matrix' id='matrix'>
@@ -105,11 +115,13 @@ function App() {
         <div className='addcontainer'>
           <button type="button" id='addbutton' onClick={()=>{addsingle(1)}}>Add</button>
           <button type="button" id='deltbutton' onClick={()=>{removesingle(1)}}>Delete</button>
+          <i className="fa-solid fa-diagram-next plus-icon"></i>
         </div>
         
       </form>
+      <div className='result'>
       <div className='grafica1'>
-          {convertelem().map((item,index)=>
+          {convertup().map((item,index)=>
             <div key={index}><input type="text" value={item} readOnly/></div>
             
           )}
@@ -117,28 +129,51 @@ function App() {
       </div>
       <div className='grafica1 flechav'>
       
-        {convertelem().map((item,index)=>
+        {convertup().map((item,index)=>
             <div key={index}>
               {item !=""?createElement('i',{className: "fa-solid fa-arrow-up"}):""}
-              <div>
+            </div>
+            
+          )}
+      </div>
+      <div className='recta-container'>
+          <div className='recta upper' style={{width:`${100/(elementos.length/3)*(elementos.length/3-1)}%`}}>
+            {doublex().map((item, index)=>
+              <div className='recta-item' key={index}></div>
+            )}
+          </div>
+          <div className='recta' style={{width:`${100/(elementos.length/3)*(elementos.length/3-1)}%`}}>
+            {doublex().map((item, index)=>
+              <div className='recta-item down' key={index}></div>
+            )}
+          </div>
+      </div>
+      <div className='grafica1 midvalues'>
+          {convertmid().map((item,index)=>
+            <div key={index}><input type="text" value={item} readOnly/></div>
+            
+          )}
+          
+      </div>
+      <div className='grafica1 flechav'>
+      
+        {convertdown().map((item,index)=>
+            <div key={index}>
+              {item !=""?createElement('i',{className: "fa-solid fa-arrow-down red-arrow"}):""}
+              <div className='arrow-tail'>
 
               </div>
             </div>
             
           )}
       </div>
-      <div className='recta-container'>
-          <div className='recta'>
-            {doublex().map((item, index)=>
-              <div className='recta-item' key={index}></div>
-            )}
-          </div>
+      <div className='grafica1'>
+          {convertdown().map((item,index)=>
+            <div key={index}><input type="text" value={item} readOnly/></div>
+            
+          )}
+          
       </div>
-      <div>
-
-      </div>
-      <div>
-
       </div>
     </>
   )
