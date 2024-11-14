@@ -6,7 +6,7 @@ import './InOut.css'
 
 function App() {
 
-  const [elementos, setelementos] = useState(["","","","","",""]);
+  const [elementos, setelementos] = useState(["0","","","1","",""]);
   const periodos = useRef<HTMLInputElement>(null);
   
   const addsingle = (n: number)=>{
@@ -69,6 +69,46 @@ function App() {
     return newer;
   }
 
+  const ordercontroller = (e:React.FocusEvent<HTMLInputElement, Element>, index:number)=>{
+    if(index%3 != 0){return;}
+
+    let arrval = convertmid();
+    arrval = arrval.map((element)=> Number.isNaN(parseInt(element))? Infinity:parseInt(element));
+    arrval.splice(index/3,1);
+    const numb = Number.isNaN(parseInt(e.target.value))?Infinity:parseInt(e.target.value);
+      
+      //initiates binary search!!
+      let left = 0;
+      let right = arrval.length-1;
+      let m= 0;
+     
+      while(left<=right){
+        console.log(".....");
+        m = Math.floor((left+right)/2)
+        if (arrval[m]==numb) {
+          break;
+        }
+        if(arrval[m]>numb){
+          right = m-1;
+        }
+        if(arrval[m]<numb){
+          left = m+1;
+        }
+      }
+
+      if (arrval[m]<numb) {
+        m++;
+      }
+      
+      setelementos(last => {
+        let newer = [...last];
+        const piecedlt = [newer[index],newer[index+1],newer[index+2]];
+        newer.splice(index,3);//elimina
+        newer.splice(m*3,0,...piecedlt);
+        return newer;
+      });
+  }
+
   const convertmid = ()=>{
     let newer: any[] = [];
     for (let i = 0; i < elementos.length; i=i+3) {
@@ -109,7 +149,7 @@ function App() {
           <div className='valores layers'> Ingreso </div>
           <div className='valores layers'> Egreso </div>
           {elementos.map((item,index)=>
-            <div key={`div${index}`}><input type="text" className='valores' key={index} value={item} onChange={(e)=>{draw(e,index)}}/></div>
+            <div key={`div${index}`}><input type="text" className='valores' key={index} value={item} onBlur={(e)=>{ordercontroller(e,index)}} onChange={(e)=>{draw(e,index)}}/></div>
           )}
         </div>
         <div className='addcontainer'>
