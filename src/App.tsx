@@ -71,19 +71,31 @@ function App() {
 
   const ordercontroller = (e:React.FocusEvent<HTMLInputElement, Element>, index:number)=>{
     if(index%3 != 0){return;}
+    
 
     let arrval = convertmid();
     arrval = arrval.map((element)=> Number.isNaN(parseInt(element))? Infinity:parseInt(element));
     arrval.splice(index/3,1);
     const numb = Number.isNaN(parseInt(e.target.value))?Infinity:parseInt(e.target.value);
-      
+    debugger
+    console.log(arrval)
+    console.log(elementos[index])
+      if(arrval.includes(numb)){
+        alert("La posición ya existe");
+        setelementos((last)=>{
+          let newer = [...last];
+          newer.splice(index,3);
+          return newer;
+        })
+        return;
+      }
       //initiates binary search!!
       let left = 0;
       let right = arrval.length-1;
       let m= 0;
      
       while(left<=right){
-        console.log(".....");
+        
         m = Math.floor((left+right)/2)
         if (arrval[m]==numb) {
           break;
