@@ -234,8 +234,8 @@ function App() {
               }%`,
             }}
           >
-            {doublex().map((item, index) => (
-              <div className="recta-item" key={index}></div>
+            {doublex().map(() => (
+              <div className="recta-item"></div>
             ))}
           </div>
           <div
@@ -246,8 +246,8 @@ function App() {
               }%`,
             }}
           >
-            {doublex().map((item, index) => (
-              <div className="recta-item down" key={index}></div>
+            {doublex().map(() => (
+              <div className="recta-item down"></div>
             ))}
           </div>
         </div>
